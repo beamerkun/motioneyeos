@@ -26,11 +26,17 @@ RUN \
       asciidoc \
       dblatex \
       graphviz \
+      sudo \
       python-matplotlib && \
     rm -rf /var/lib/apt/lists/*  && \
     useradd -ms /bin/bash build && \
     mkdir -p /build && \
     chown -R build:build  /build
+
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> \
+/etc/sudoers
+
+RUN adduser build sudo
 
 USER build
 
